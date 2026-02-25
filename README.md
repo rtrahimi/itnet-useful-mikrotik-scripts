@@ -45,6 +45,17 @@ Installs daily address-list sync automation directly inside a scheduler task.
   - `start-time=05:00:00`
   - `start date 1997-01-01`
 
+### 3. `scripts/itnet_dns_static_openai_setup.rsc`
+
+Applies OpenAI-related DNS static FWD records with short iTNet comments.
+
+- Removes broken legacy regexp record if present.
+- Rebuilds managed records idempotently.
+- Uses address-list `openai` for resolved IP tagging.
+- Uses comments:
+  - `iTNet-oa-sub2al` for `match-subdomain=yes` records.
+  - `iTNet-oa-host2al` for host-only records.
+
 ## Quick Start
 
 ### Install VPN mangle setup script
@@ -61,6 +72,14 @@ Installs daily address-list sync automation directly inside a scheduler task.
 /tool fetch check-certificate=no url="https://raw.githubusercontent.com/rtrahimi/itnet-useful-mikrotik-scripts/main/scripts/itnet_addresslist_sync.rsc" dst-path="itnet_addresslist_sync.rsc"
 /import file-name="itnet_addresslist_sync.rsc"
 /file remove [find where name="itnet_addresslist_sync.rsc"]
+```
+
+### Install DNS static OpenAI setup script
+
+```routeros
+/tool fetch check-certificate=no url="https://raw.githubusercontent.com/rtrahimi/itnet-useful-mikrotik-scripts/main/scripts/itnet_dns_static_openai_setup.rsc" dst-path="itnet_dns_static_openai_setup.rsc"
+/import file-name="itnet_dns_static_openai_setup.rsc"
+/file remove [find where name="itnet_dns_static_openai_setup.rsc"]
 ```
 
 ### Verify scheduler
