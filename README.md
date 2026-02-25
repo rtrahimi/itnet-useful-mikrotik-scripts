@@ -58,6 +58,21 @@ Applies OpenAI-related DNS static FWD records with short iTNet comments.
   - `iTNet-oa-sub2al` for managed domain records.
   - `iTNet-oa-host2al` for managed host/service records.
 
+### 4. `scripts/openai_discord_dns_collector.py`
+
+Linux DNS forwarder/collector for discovering OpenAI and Discord related domains and IPv4 addresses from live DNS traffic.
+
+- Listens on UDP/TCP DNS (`53` by default).
+- Forwards queries to an upstream resolver (`8.8.8.8` by default).
+- Classifies observed domains (OpenAI/Discord suffix matching).
+- Extracts global IPv4 answers and stores unique values.
+- Writes detailed DNS events log for audit/troubleshooting.
+
+Default outputs:
+
+- `output-file=/root/openai_discord_ipv4.txt`
+- `events-file=/root/openai_discord_dns_events.log`
+
 ## Quick Start
 
 ### Install VPN mangle setup script
@@ -82,6 +97,18 @@ Applies OpenAI-related DNS static FWD records with short iTNet comments.
 /tool fetch check-certificate=no url="https://raw.githubusercontent.com/rtrahimi/itnet-useful-mikrotik-scripts/main/scripts/itnet_dns_static_openai_setup.rsc" dst-path="itnet_dns_static_openai_setup.rsc"
 /import file-name="itnet_dns_static_openai_setup.rsc"
 /file remove [find where name="itnet_dns_static_openai_setup.rsc"]
+```
+
+### Run OpenAI/Discord DNS collector on Linux
+
+```bash
+python3 scripts/openai_discord_dns_collector.py \
+  --listen-host 0.0.0.0 \
+  --listen-port 53 \
+  --upstream-host 8.8.8.8 \
+  --upstream-port 53 \
+  --output-file /root/openai_discord_ipv4.txt \
+  --events-file /root/openai_discord_dns_events.log
 ```
 
 ### Verify scheduler
