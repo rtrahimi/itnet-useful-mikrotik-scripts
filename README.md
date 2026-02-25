@@ -43,7 +43,7 @@ Installs daily address-list sync automation directly inside a scheduler task.
 - Scheduler settings:
   - `interval=1d`
   - `start-time=05:00:00`
-  - start date equivalent to `01.01.1997` (`jan/01/1997` in RouterOS syntax, shown as `1997-01-01`)
+  - `start date 1997-01-01`
 
 ## Quick Start
 
@@ -84,7 +84,3 @@ Expected key values:
 - Scripts are designed to be explicit and operationally predictable.
 
 ## Contribution Workflow
-
-- Add each new script under `scripts/`.
-- Keep file names in `snake_case`.
-- Update `README.md` when adding or changing scripts.
