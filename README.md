@@ -47,18 +47,28 @@ Installs daily address-list sync automation directly inside a scheduler task.
 
 ### 3. `scripts/itnet_dns_static_openai_setup.rsc`
 
-Applies OpenAI-related DNS static FWD records with short iTNet comments.
+Applies strict first-party OpenAI DNS static FWD records.
 
 - Designed for fresh routers with no previous DNS static setup.
-- Removes broken legacy regexp record if present.
-- Rebuilds managed records idempotently.
+- Removes legacy OpenAI-managed records by comment.
+- Rebuilds managed records idempotently with first-party-only scope.
 - Uses address-list `VPN` for resolved IP tagging.
 - Enables `match-subdomain=yes` on all managed FWD records.
-- Uses comments:
-  - `iTNet-oa-sub2al` for managed domain records.
-  - `iTNet-oa-host2al` for managed host/service records.
+- Uses comment:
+  - `iTNet-oa-fp-sub2al` for managed domain records.
 
-### 4. `scripts/openai_discord_dns_collector.py`
+### 4. `scripts/itnet_dns_static_discord_setup.rsc`
+
+Applies strict first-party Discord DNS static FWD records.
+
+- Removes legacy Discord-managed records by comment.
+- Rebuilds managed records idempotently with first-party-only scope.
+- Uses address-list `VPN` for resolved IP tagging.
+- Enables `match-subdomain=yes` on all managed FWD records.
+- Uses comment:
+  - `iTNet-dc-fp-sub2al` for managed domain records.
+
+### 5. `scripts/openai_discord_dns_collector.py`
 
 Linux DNS forwarder/collector for discovering OpenAI and Discord related domains and IPv4 addresses from live DNS traffic.
 
@@ -97,6 +107,14 @@ Default outputs:
 /tool fetch check-certificate=no url="https://raw.githubusercontent.com/rtrahimi/itnet-useful-mikrotik-scripts/main/scripts/itnet_dns_static_openai_setup.rsc" dst-path="itnet_dns_static_openai_setup.rsc"
 /import file-name="itnet_dns_static_openai_setup.rsc"
 /file remove [find where name="itnet_dns_static_openai_setup.rsc"]
+```
+
+### Install DNS static Discord setup script
+
+```routeros
+/tool fetch check-certificate=no url="https://raw.githubusercontent.com/rtrahimi/itnet-useful-mikrotik-scripts/main/scripts/itnet_dns_static_discord_setup.rsc" dst-path="itnet_dns_static_discord_setup.rsc"
+/import file-name="itnet_dns_static_discord_setup.rsc"
+/file remove [find where name="itnet_dns_static_discord_setup.rsc"]
 ```
 
 ### Run OpenAI/Discord DNS collector on Linux
