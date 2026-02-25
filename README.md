@@ -49,12 +49,14 @@ Installs daily address-list sync automation directly inside a scheduler task.
 
 Applies OpenAI-related DNS static FWD records with short iTNet comments.
 
+- Designed for fresh routers with no previous DNS static setup.
 - Removes broken legacy regexp record if present.
 - Rebuilds managed records idempotently.
-- Uses address-list `openai` for resolved IP tagging.
+- Uses address-list `VPN` for resolved IP tagging.
+- Enables `match-subdomain=yes` on all managed FWD records.
 - Uses comments:
-  - `iTNet-oa-sub2al` for `match-subdomain=yes` records.
-  - `iTNet-oa-host2al` for host-only records.
+  - `iTNet-oa-sub2al` for managed domain records.
+  - `iTNet-oa-host2al` for managed host/service records.
 
 ## Quick Start
 
