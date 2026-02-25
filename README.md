@@ -30,14 +30,16 @@ Rule comments:
 
 ### 2. `scripts/itnet_addresslist_sync.rsc`
 
-Installs address-list sync automation on MikroTik.
+Installs daily address-list sync automation directly inside a scheduler task.
 
-- Creates `/system script` named `iTNet-AddressList-Sync`.
-- The installed script fetches and imports these lists:
+- Creates `/system scheduler` named `iTNet-AddressList-Sync`.
+- Stores the full sync logic inline in scheduler `on-event`.
+- Does not depend on a separate `/system script run ...` call.
+- Removes legacy `/system script` with the same name if it exists.
+- Syncs these remote lists daily:
   - `whatsapp_vpn.rsc`
   - `telegram_vpn.rsc`
   - `iran_no_vpn.rsc`
-- Creates `/system scheduler` named `iTNet-AddressList-Sync`.
 - Scheduler settings:
   - `interval=1d`
   - `start-time=05:00:00`
@@ -72,6 +74,7 @@ Expected key values:
 - `start-time=05:00:00`
 - `interval=1d`
 - `start-date=1997-01-01`
+- `on-event` contains the sync script body (inline)
 
 ## Notes
 

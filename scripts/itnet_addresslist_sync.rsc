@@ -4,10 +4,13 @@
 :local startDate "jan/01/1997"
 :local startTime "05:00:00"
 :do {
+    :if ([:len [/system scheduler find where name=$syncName]] > 0) do={
+        /system scheduler remove [/system scheduler find where name=$syncName]
+    }
     :if ([:len [/system script find where name=$syncName]] > 0) do={
         /system script remove [/system script find where name=$syncName]
     }
-    /system script add name=$syncName policy=ftp,read,write,policy,test,sensitive source={
+    /system scheduler add name=$syncName start-date=$startDate start-time=$startTime interval=1d disabled=no on-event={
 :log info "iTNet-AddressList-Sync-start"
 :local ok true
 :local f1 "itnet_whatsapp_vpn.rsc"
@@ -38,22 +41,11 @@
     :log warning "iTNet-AddressList-Sync-finished-with-errors"
 }
     }
+    /system scheduler enable [/system scheduler find where name=$syncName]
+    :log info "iTNet scheduler configured daily at 05:00 starting 1997-01-01"
 } on-error={
     :set ok false
-    :log error "iTNet failed to create sync script"
-}
-:if ($ok = true) do={
-    :do {
-        :if ([:len [/system scheduler find where name=$syncName]] > 0) do={
-            /system scheduler remove [/system scheduler find where name=$syncName]
-        }
-        /system scheduler add name=$syncName start-date=$startDate start-time=$startTime interval=1d disabled=no on-event=("/system script run " . $syncName)
-        /system scheduler enable [/system scheduler find where name=$syncName]
-        :log info "iTNet scheduler configured daily at 05:00 starting 1997-01-01"
-    } on-error={
-        :set ok false
-        :log error "iTNet failed to create scheduler"
-    }
+    :log error "iTNet failed to configure address-list scheduler"
 }
 :if ($ok = true) do={
     :log info "iTNet-AddressList-Scheduler-Setup-done"
