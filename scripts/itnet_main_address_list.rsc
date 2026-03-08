@@ -1,6 +1,5 @@
 :log info "iTNet-Main-address-list-start"
 /ip firewall address-list remove [find where list="NO-VPN" comment="iTNet-NoVPN"]
-/ip firewall address-list remove [find where list="NO-VPN" comment="iTNet-Iran-NoVPN-IPv4"]
 /ip firewall address-list remove [find where list="VPN" comment~"^iTNet-Whatsapp"]
 /ip firewall address-list remove [find where list="VPN" comment~"^iTNet-Telegram"]
 /ip firewall address-list add list=NO-VPN address=2.57.3.0/24 comment=iTNet-NoVPN
