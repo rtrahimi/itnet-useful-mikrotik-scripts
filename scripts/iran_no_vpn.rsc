@@ -1,5 +1,4 @@
 /ip firewall address-list remove [find where list="NO-VPN" comment="iTNet-NoVPN"]
-/ip firewall address-list remove [find where list="NO-VPN" comment="iTNet-Iran-NoVPN-IPv4"]
 /ip firewall address-list add list=NO-VPN address=2.57.3.0/24 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=2.144.0.0/14 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=2.176.0.0/12 comment=iTNet-NoVPN
