@@ -1800,7 +1800,6 @@
 /ip firewall address-list add list=NO-VPN address=217.26.222.0/24 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=217.60.236.0/24 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=217.60.238.0/24 comment=iTNet-NoVPN
-/ip firewall address-list add list=NO-VPN address=217.60.241.0/24 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=217.60.243.0/24 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=217.60.247.0/24 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=217.60.255.0/24 comment=iTNet-NoVPN
