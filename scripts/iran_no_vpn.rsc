@@ -1375,6 +1375,7 @@
 /ip firewall address-list add list=NO-VPN address=185.221.112.0/22 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=185.221.192.0/22 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=185.221.239.0/24 comment=iTNet-NoVPN
+/ip firewall address-list add list=NO-VPN address=185.222.28.0/24 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=185.222.120.0/22 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=185.222.163.0/24 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=185.222.180.0/22 comment=iTNet-NoVPN
