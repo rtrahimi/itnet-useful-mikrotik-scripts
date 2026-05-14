@@ -1831,8 +1831,8 @@
 /ip firewall address-list add list=VPN address=31.13.64.0/18 comment=iTNet-Whatsapp-IPv4
 /ip firewall address-list add list=VPN address=45.64.40.0/22 comment=iTNet-Whatsapp-IPv4
 /ip firewall address-list add list=VPN address=57.141.0.0/20 comment=iTNet-Whatsapp-IPv4
-/ip firewall address-list add list=VPN address=57.141.16.0/22 comment=iTNet-Whatsapp-IPv4
-/ip firewall address-list add list=VPN address=57.141.20.0/23 comment=iTNet-Whatsapp-IPv4
+/ip firewall address-list add list=VPN address=57.141.16.0/21 comment=iTNet-Whatsapp-IPv4
+/ip firewall address-list add list=VPN address=57.141.24.0/23 comment=iTNet-Whatsapp-IPv4
 /ip firewall address-list add list=VPN address=57.144.0.0/14 comment=iTNet-Whatsapp-IPv4
 /ip firewall address-list add list=VPN address=66.111.48.0/22 comment=iTNet-Whatsapp-IPv4
 /ip firewall address-list add list=VPN address=66.220.144.0/20 comment=iTNet-Whatsapp-IPv4
