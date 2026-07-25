@@ -331,7 +331,7 @@
 /ip firewall address-list add list=NO-VPN address=85.8.230.0/23 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=85.8.232.0/24 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=85.8.236.0/24 comment=iTNet-NoVPN
-/ip firewall address-list add list=NO-VPN address=85.8.242.0/24 comment=iTNet-NoVPN
+/ip firewall address-list add list=NO-VPN address=85.8.242.0/23 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=85.9.64.0/18 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=85.15.0.0/18 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=85.133.128.0/17 comment=iTNet-NoVPN
@@ -730,7 +730,8 @@
 /ip firewall address-list add list=NO-VPN address=94.183.162.0/23 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=94.183.164.0/22 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=94.183.171.0/24 comment=iTNet-NoVPN
-/ip firewall address-list add list=NO-VPN address=94.183.172.0/22 comment=iTNet-NoVPN
+/ip firewall address-list add list=NO-VPN address=94.183.172.0/23 comment=iTNet-NoVPN
+/ip firewall address-list add list=NO-VPN address=94.183.175.0/24 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=94.183.176.0/24 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=94.183.179.0/24 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=94.183.180.0/23 comment=iTNet-NoVPN
