@@ -28,24 +28,34 @@ Rule comments:
 - `iTNet-Mangle-VPNList-to-VPNRoute`
 - `iTNet-Mangle-NotNoVPN-to-VPNRoute`
 
-### 2. `scripts/itnet_addresslist_sync.rsc`
+### 2. `scripts/itnet_addresslist_import_all_scheduler_setup.rsc`
 
-Installs daily address-list sync automation directly inside a scheduler task.
+Installs daily address-list import automation.
 
-- Creates `/system scheduler` named `iTNet-AddressList-Sync`.
-- Stores the full sync logic inline in scheduler `on-event`.
-- Does not depend on a separate `/system script run ...` call.
-- Removes legacy `/system script` with the same name if it exists.
-- Syncs these remote lists daily:
-  - `whatsapp_vpn.rsc`
-  - `telegram_vpn.rsc`
-  - `iran_no_vpn.rsc`
+- Creates `/system script` named `iTNet-AddressList-Import-All`.
+- Creates `/system scheduler` with the same name that runs that script daily.
+- Removes legacy scheduler `iTNet-import address lists` if present.
+- Runs the import once immediately during setup.
+- Fetches and imports these lists from this repository:
+  - `iran_no_vpn.rsc` → address-list `NO-VPN`
+  - `whatsapp_vpn.rsc` → address-list `VPN`
+  - `telegram_vpn.rsc` → address-list `VPN`
 - Scheduler settings:
   - `interval=1d`
-  - `start-time=05:00:00`
-  - `start date 1997-01-01`
+  - `start-time=01:00:00`
+  - `start-date=jan/01/1970`
 
-### 3. `scripts/itnet_dns_static_openai_setup.rsc`
+### 3. `scripts/itnet_addresslist_import_all.rsc`
+
+One-shot manual import of the same three address-list files (no scheduler install).
+
+### 4. Address-list data files
+
+- `scripts/iran_no_vpn.rsc`
+- `scripts/whatsapp_vpn.rsc`
+- `scripts/telegram_vpn.rsc`
+
+### 5. `scripts/itnet_dns_static_openai_setup.rsc`
 
 Applies strict first-party OpenAI DNS static FWD records.
 
@@ -57,7 +67,7 @@ Applies strict first-party OpenAI DNS static FWD records.
 - Uses comment:
   - `iTNet-oa-fp-sub2al` for managed domain records.
 
-### 4. `scripts/itnet_dns_static_discord_setup.rsc`
+### 6. `scripts/itnet_dns_static_discord_setup.rsc`
 
 Applies strict first-party Discord DNS static FWD records.
 
@@ -78,12 +88,20 @@ Applies strict first-party Discord DNS static FWD records.
 /file remove [find where name="itnet_vpn_mangle_setup.rsc"]
 ```
 
-### Install address-list sync scheduler script
+### Install address-list daily import (recommended)
 
 ```routeros
-/tool fetch check-certificate=no url="https://raw.githubusercontent.com/rtrahimi/itnet-useful-mikrotik-scripts/main/scripts/itnet_addresslist_sync.rsc" dst-path="itnet_addresslist_sync.rsc"
-/import file-name="itnet_addresslist_sync.rsc"
-/file remove [find where name="itnet_addresslist_sync.rsc"]
+/tool fetch check-certificate=no url="https://raw.githubusercontent.com/rtrahimi/itnet-useful-mikrotik-scripts/main/scripts/itnet_addresslist_import_all_scheduler_setup.rsc" dst-path="itnet_addresslist_import_all_scheduler_setup.rsc"
+/import file-name="itnet_addresslist_import_all_scheduler_setup.rsc"
+/file remove [find where name="itnet_addresslist_import_all_scheduler_setup.rsc"]
+```
+
+### One-shot address-list import (no scheduler)
+
+```routeros
+/tool fetch check-certificate=no url="https://raw.githubusercontent.com/rtrahimi/itnet-useful-mikrotik-scripts/main/scripts/itnet_addresslist_import_all.rsc" dst-path="itnet_addresslist_import_all.rsc"
+/import file-name="itnet_addresslist_import_all.rsc"
+/file remove [find where name="itnet_addresslist_import_all.rsc"]
 ```
 
 ### Install DNS static OpenAI setup script
@@ -102,18 +120,19 @@ Applies strict first-party Discord DNS static FWD records.
 /file remove [find where name="itnet_dns_static_discord_setup.rsc"]
 ```
 
-### Verify scheduler
+### Verify scheduler and script
 
 ```routeros
-/system scheduler print detail where name="iTNet-AddressList-Sync"
+/system script print detail where name="iTNet-AddressList-Import-All"
+/system scheduler print detail where name="iTNet-AddressList-Import-All"
 ```
 
 Expected key values:
 
-- `start-time=05:00:00`
+- `start-time=01:00:00`
 - `interval=1d`
-- `start-date=1997-01-01`
-- `on-event` contains the sync script body (inline)
+- `start-date=jan/01/1970`
+- scheduler `on-event=iTNet-AddressList-Import-All`
 
 ## Notes
 
@@ -121,5 +140,6 @@ Expected key values:
 - Rule order in `mangle` is important.
 - `itnet_vpn_mangle_setup.rsc` intentionally uses `passthrough=no` for deterministic match-stop behavior.
 - Scripts are designed to be explicit and operationally predictable.
+- Legacy `itnet_addresslist_sync.rsc` and combined `itnet_main_address_list.rsc` were removed; use the scheduler setup and the three split list files instead.
 
 ## Contribution Workflow
