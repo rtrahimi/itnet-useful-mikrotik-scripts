@@ -14,15 +14,19 @@
 :if ([:len [/file find where name=$fWhatsApp]] = 0) do={ :set ok false; :log error "iTNet whatsapp file missing" }
 :if ([:len [/file find where name=$fTelegram]] = 0) do={ :set ok false; :log error "iTNet telegram file missing" }
 :if ($ok = true) do={
-    :do { /import file-name=$fIran } on-error={ :set ok false; :log error "iTNet import iran failed" }
-    :do { /import file-name=$fWhatsApp } on-error={ :set ok false; :log error "iTNet import whatsapp failed" }
-    :do { /import file-name=$fTelegram } on-error={ :set ok false; :log error "iTNet import telegram failed" }
+ :do { /import file-name=$fIran } on-error={ :set ok false; :log error "iTNet import iran failed" }
 }
 :if ($ok = true) do={
-    :if ([:len [/file find where name=$fIran]] > 0) do={ /file remove [find where name=$fIran] }
-    :if ([:len [/file find where name=$fWhatsApp]] > 0) do={ /file remove [find where name=$fWhatsApp] }
-    :if ([:len [/file find where name=$fTelegram]] > 0) do={ /file remove [find where name=$fTelegram] }
-    :log info "iTNet-AddressList-Import-All-done"
+ :do { /import file-name=$fWhatsApp } on-error={ :set ok false; :log error "iTNet import whatsapp failed" }
+}
+:if ($ok = true) do={
+ :do { /import file-name=$fTelegram } on-error={ :set ok false; :log error "iTNet import telegram failed" }
+}
+:if ([:len [/file find where name=$fIran]] > 0) do={ /file remove [find where name=$fIran] }
+:if ([:len [/file find where name=$fWhatsApp]] > 0) do={ /file remove [find where name=$fWhatsApp] }
+:if ([:len [/file find where name=$fTelegram]] > 0) do={ /file remove [find where name=$fTelegram] }
+:if ($ok = true) do={
+ :log info "iTNet-AddressList-Import-All-done"
 } else={
-    :log warning "iTNet-AddressList-Import-All-finished-with-errors"
+ :log warning "iTNet-AddressList-Import-All-finished-with-errors"
 }
