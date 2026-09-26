@@ -22,7 +22,7 @@
  :local fIran "iran_no_vpn.rsc"
  :local fWhatsApp "whatsapp_vpn.rsc"
  :local fTelegram "telegram_vpn.rsc"
- :local fSpamhaus "spamhaus_auto_block.rsc"
+ :local fSpamhaus "itnet-spamhaus_auto_block.rsc"
  :if ([:len [/file find where name=$fIran]] > 0) do={ /file remove [find where name=$fIran] }
  :if ([:len [/file find where name=$fWhatsApp]] > 0) do={ /file remove [find where name=$fWhatsApp] }
  :if ([:len [/file find where name=$fTelegram]] > 0) do={ /file remove [find where name=$fTelegram] }

@@ -40,7 +40,7 @@ Installs daily address-list import automation.
   - `iran_no_vpn.rsc` → address-list `NO-VPN`
   - `whatsapp_vpn.rsc` → address-list `VPN`
   - `telegram_vpn.rsc` → address-list `VPN`
-  - `spamhaus_auto_block.rsc` → address-list `Auto-Block`
+  - `itnet-spamhaus_auto_block.rsc` → address-list `Auto-Block`
 - Scheduler settings:
   - `interval=1d`
   - `start-time=01:00:00`
@@ -55,7 +55,7 @@ One-shot manual import of the same four address-list files (no scheduler install
 - `scripts/iran_no_vpn.rsc`
 - `scripts/whatsapp_vpn.rsc`
 - `scripts/telegram_vpn.rsc`
-- `scripts/spamhaus_auto_block.rsc`
+- `scripts/itnet-spamhaus_auto_block.rsc`
 
 ### 5. `scripts/itnet_dns_static_openai_setup.rsc`
 
