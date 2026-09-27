@@ -1,7 +1,7 @@
-:log info "iTNet-AddressList-Import-All-Scheduler-Setup-start"
+:log info "iTNet-AddressList-Import-Iran-Setup-start"
 :local ok true
-:local scriptName "iTNet-AddressList-Import-All"
-:local schedulerName "iTNet-AddressList-Import-All"
+:local scriptName "iTNet-AddressList-Import-Iran"
+:local schedulerName "iTNet-AddressList-Import-Iran"
 :local startDate "jan/01/1970"
 :local startTime "01:00:00"
 :local scriptPolicy "ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon"
@@ -9,19 +9,25 @@
  :if ([:len [/system scheduler find where name=$schedulerName]] > 0) do={
   /system scheduler remove [find where name=$schedulerName]
  }
+ :if ([:len [/system scheduler find where name="iTNet-AddressList-Import-All"]] > 0) do={
+  /system scheduler remove [find where name="iTNet-AddressList-Import-All"]
+ }
  :if ([:len [/system scheduler find where name="iTNet-import address lists"]] > 0) do={
   /system scheduler remove [find where name="iTNet-import address lists"]
  }
  :if ([:len [/system script find where name=$scriptName]] > 0) do={
   /system script remove [find where name=$scriptName]
  }
+ :if ([:len [/system script find where name="iTNet-AddressList-Import-All"]] > 0) do={
+  /system script remove [find where name="iTNet-AddressList-Import-All"]
+ }
  /system script add name=$scriptName policy=$scriptPolicy source={
- :log info "iTNet-AddressList-Import-All-start"
+ :log info "iTNet-AddressList-Import-Iran-start"
  :local ok true
  :local baseUrl "https://raw.githubusercontent.com/rtrahimi/itnet-useful-mikrotik-scripts/main/scripts"
- :local fIran "iran_no_vpn.rsc"
- :local fWhatsApp "whatsapp_vpn.rsc"
- :local fTelegram "telegram_vpn.rsc"
+ :local fIran "itnet-iran_no_vpn.rsc"
+ :local fWhatsApp "itnet-whatsapp_vpn.rsc"
+ :local fTelegram "itnet-telegram_vpn.rsc"
  :local fSpamhaus "itnet-spamhaus_auto_block.rsc"
  :if ([:len [/file find where name=$fIran]] > 0) do={ /file remove [find where name=$fIran] }
  :if ([:len [/file find where name=$fWhatsApp]] > 0) do={ /file remove [find where name=$fWhatsApp] }
@@ -52,9 +58,9 @@
  :if ([:len [/file find where name=$fTelegram]] > 0) do={ /file remove [find where name=$fTelegram] }
  :if ([:len [/file find where name=$fSpamhaus]] > 0) do={ /file remove [find where name=$fSpamhaus] }
  :if ($ok = true) do={
-  :log info "iTNet-AddressList-Import-All-done"
+  :log info "iTNet-AddressList-Import-Iran-done"
  } else={
-  :log warning "iTNet-AddressList-Import-All-finished-with-errors"
+  :log warning "iTNet-AddressList-Import-Iran-finished-with-errors"
  }
  }
  /system scheduler add interval=1d name=$schedulerName on-event=$scriptName policy=$scriptPolicy start-date=$startDate start-time=$startTime
@@ -62,13 +68,13 @@
   /system script run $scriptName
  } on-error={
   :set ok false
-  :log error "iTNet-AddressList-Import-All immediate run failed"
+  :log error "iTNet-AddressList-Import-Iran immediate run failed"
  }
- :log info "iTNet-AddressList-Import-All-Scheduler-Setup-done"
+ :log info "iTNet-AddressList-Import-Iran-Setup-done"
 } on-error={
  :set ok false
- :log error "iTNet-AddressList-Import-All-Scheduler-Setup-failed"
+ :log error "iTNet-AddressList-Import-Iran-Setup-failed"
 }
 :if ($ok = false) do={
- :log warning "iTNet-AddressList-Import-All-Scheduler-Setup-finished-with-errors"
+ :log warning "iTNet-AddressList-Import-Iran-Setup-finished-with-errors"
 }

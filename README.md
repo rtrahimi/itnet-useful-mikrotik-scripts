@@ -28,33 +28,34 @@ Rule comments:
 - `iTNet-Mangle-VPNList-to-VPNRoute`
 - `iTNet-Mangle-NotNoVPN-to-VPNRoute`
 
-### 2. `scripts/itnet_addresslist_import_all_scheduler_setup.rsc`
+### 2. `scripts/itnet_addresslist_import_iran.rsc`
 
-Installs daily address-list import automation.
+For Iran (`Y-*-RTR*`) only. Installs script + daily scheduler and runs once.
 
-- Creates `/system script` named `iTNet-AddressList-Import-All`.
-- Creates `/system scheduler` with the same name that runs that script daily.
-- Removes legacy scheduler `iTNet-import address lists` if present.
-- Runs the import once immediately during setup.
-- Fetches and imports these lists from this repository:
-  - `iran_no_vpn.rsc` → address-list `NO-VPN`
-  - `whatsapp_vpn.rsc` → address-list `VPN`
-  - `telegram_vpn.rsc` → address-list `VPN`
+- Creates `/system script` and `/system scheduler` named `iTNet-AddressList-Import-Iran`.
+- Removes legacy `iTNet-AddressList-Import-All` and `iTNet-import address lists` if present.
+- Fetches and imports:
+  - `itnet-iran_no_vpn.rsc` → address-list `NO-VPN`
+  - `itnet-whatsapp_vpn.rsc` → address-list `VPN`
+  - `itnet-telegram_vpn.rsc` → address-list `VPN`
   - `itnet-spamhaus_auto_block.rsc` → address-list `Auto-Block`
-- Scheduler settings:
-  - `interval=1d`
-  - `start-time=01:00:00`
-  - `start-date=jan/01/1970`
+- Scheduler: `interval=1d`, `start-time=01:00:00`, `start-date=jan/01/1970`
 
-### 3. `scripts/itnet_addresslist_import_all.rsc`
+### 3. `scripts/itnet_addresslist_import_outside.rsc`
 
-One-shot manual import of the same four address-list files (no scheduler install).
+For outside-Iran (`X-*-RTR*`) only. Installs script + daily scheduler and runs once.
+
+- Creates `/system script` and `/system scheduler` named `iTNet-AddressList-Import-Outside`.
+- Removes Iran/legacy import script+scheduler names if present (`Import-Iran`, `Import-All`, legacy).
+- Fetches and imports only:
+  - `itnet-spamhaus_auto_block.rsc` → address-list `Auto-Block`
+- Same scheduler timing as Iran: `interval=1d`, `start-time=01:00:00`
 
 ### 4. Address-list data files
 
-- `scripts/iran_no_vpn.rsc`
-- `scripts/whatsapp_vpn.rsc`
-- `scripts/telegram_vpn.rsc`
+- `scripts/itnet-iran_no_vpn.rsc`
+- `scripts/itnet-whatsapp_vpn.rsc`
+- `scripts/itnet-telegram_vpn.rsc`
 - `scripts/itnet-spamhaus_auto_block.rsc`
 
 ### 5. `scripts/itnet_dns_static_openai_setup.rsc`
