@@ -1,0 +1,10 @@
+[Unit]
+Description=Run daily Telegram IPv4 update at 03:00 UTC
+
+[Timer]
+OnCalendar=*-*-* 03:00:00
+Persistent=true
+Unit=daily-telegram-update.service
+
+[Install]
+WantedBy=timers.target
