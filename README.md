@@ -1,5 +1,20 @@
 # iTNet Useful MikroTik Scripts
 
+
+## Repository layout
+
+- `scripts/` — MikroTik-ready `.rsc` files and import helpers
+- `raw-data/` — daily raw IPv4 prefix lists (`.txt` + `.sha256`) produced on the generator host
+
+Raw files currently published:
+
+- `raw-data/iran_ipv4.txt`
+- `raw-data/meta_ipv4.txt`
+- `raw-data/telegram_ipv4.txt`
+- `raw-data/spamhaus_ipv4.txt`
+
+Dedicated `daily-*-address-list` GitHub repositories are no longer updated; this repository is the single publish target.
+
 ![RouterOS](https://img.shields.io/badge/routeros-v7-blue)
 ![Scope](https://img.shields.io/badge/scope-production%20utility%20scripts-0b7285)
 
