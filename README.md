@@ -179,20 +179,20 @@ References: [MikroTik Fetch](https://help.mikrotik.com/docs/spaces/ROS/pages/897
 /file remove [find where name="itnet_vpn_mangle_setup.rsc"]
 ```
 
-### Install address-list daily import (recommended)
+### Install address-list import — Iran (`Y-*-RTR*`)
 
 ```routeros
-/tool fetch check-certificate=no url="https://raw.githubusercontent.com/rtrahimi/itnet-useful-mikrotik-scripts/main/scripts/itnet_addresslist_import_all_scheduler_setup.rsc" dst-path="itnet_addresslist_import_all_scheduler_setup.rsc"
-/import file-name="itnet_addresslist_import_all_scheduler_setup.rsc"
-/file remove [find where name="itnet_addresslist_import_all_scheduler_setup.rsc"]
+/tool fetch check-certificate=no url="https://raw.githubusercontent.com/rtrahimi/itnet-useful-mikrotik-scripts/main/scripts/itnet_addresslist_import_iran.rsc" dst-path="itnet_addresslist_import_iran.rsc"
+/import file-name="itnet_addresslist_import_iran.rsc"
+/file remove [find where name="itnet_addresslist_import_iran.rsc"]
 ```
 
-### One-shot address-list import (no scheduler)
+### Install address-list import — outside Iran (`X-*-RTR*`)
 
 ```routeros
-/tool fetch check-certificate=no url="https://raw.githubusercontent.com/rtrahimi/itnet-useful-mikrotik-scripts/main/scripts/itnet_addresslist_import_all.rsc" dst-path="itnet_addresslist_import_all.rsc"
-/import file-name="itnet_addresslist_import_all.rsc"
-/file remove [find where name="itnet_addresslist_import_all.rsc"]
+/tool fetch check-certificate=no url="https://raw.githubusercontent.com/rtrahimi/itnet-useful-mikrotik-scripts/main/scripts/itnet_addresslist_import_outside.rsc" dst-path="itnet_addresslist_import_outside.rsc"
+/import file-name="itnet_addresslist_import_outside.rsc"
+/file remove [find where name="itnet_addresslist_import_outside.rsc"]
 ```
 
 ### Install DNS static OpenAI setup script
