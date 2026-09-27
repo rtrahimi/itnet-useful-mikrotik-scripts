@@ -1,26 +1,40 @@
-# iTNet address-list generator (container)
+# iTNet address-list generator (always-on container)
 
 ## Host layout
 
 ```text
 /root/itnet-addresslist-generator/
-  source/     # Dockerfile, compose, scripts, systemd unit templates
+  source/     # Dockerfile, compose, scripts
   data/
-    repo/     # local clone of itnet-useful-mikrotik-scripts (publish target)
-    work/     # job workdirs
-    lock/     # flock files
+    repo/     # local clone of itnet-useful-mikrotik-scripts
+    work/     # job workdirs + logs/
+    lock/
   secrets/
-    git_deploy_key   # GitHub deploy key (repo write)
+    git_deploy_key
 ```
 
-Only host requirements outside this tree:
-- Docker Engine
-- systemd timers that call `docker compose run` (optional scheduler)
+Host requirements outside this tree:
+- Docker Engine (with restart on boot)
 
-## Build / run
+No systemd timers are used. Scheduling is inside the container via cron (UTC).
+
+## Schedule (UTC)
+
+- 03:00 — iran, meta, telegram, spamhaus
+- 03:30 — main
+
+## Start / stop
 
 ```bash
 cd /root/itnet-addresslist-generator/source
-docker compose build
+docker compose up -d --build
+docker compose ps
+docker compose logs -f
+docker compose down
+```
+
+## Manual one-shot job
+
+```bash
 docker compose run --rm update spamhaus
 ```

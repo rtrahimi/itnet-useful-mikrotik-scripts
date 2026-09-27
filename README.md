@@ -22,14 +22,15 @@ A curated collection of practical MikroTik scripts used in iTNet production envi
 
 ## Source (container)
 
-Daily list generation runs in Docker under:
+Always-on Docker generator under `/root/itnet-addresslist-generator/`.
 
-`/root/itnet-addresslist-generator/`
-
-- Source: `source/` (also mirrored in this repo as `source/`)
-- Local publish clone on host: `/root/itnet-addresslist-generator/data/repo`
+- Source: `source/`
+- Local publish clone: `/root/itnet-addresslist-generator/data/repo`
 - Deploy key: `/root/itnet-addresslist-generator/secrets/git_deploy_key`
-- Manual: `docker compose -f /root/itnet-addresslist-generator/source/docker-compose.yml run --rm update spamhaus`
+- Scheduler: cron inside the container (UTC 03:00 / 03:30)
+- Start: `docker compose -f /root/itnet-addresslist-generator/source/docker-compose.yml up -d`
+
+No host systemd timers.
 
 
 ## Repository Goals

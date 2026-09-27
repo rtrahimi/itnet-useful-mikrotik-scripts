@@ -2,6 +2,7 @@ FROM debian:bookworm-slim
 
 ENV DEBIAN_FRONTEND=noninteractive \
     LANG=C.UTF-8 \
+    TZ=UTC \
     WORK_ROOT=/data/work \
     SCRIPTS_REPO_DIR=/data/repo \
     LOCK_FILE=/data/lock/itnet-useful-mikrotik-scripts.lock \
@@ -15,6 +16,7 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends \
       bash \
       ca-certificates \
+      cron \
       curl \
       gawk \
       git \
@@ -23,13 +25,16 @@ RUN apt-get update \
       whois \
       coreutils \
       util-linux \
+      tzdata \
  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 COPY bin/ /app/bin/
 COPY entrypoint.sh /app/entrypoint.sh
+COPY crontab /etc/cron.d/itnet-addresslist
 RUN chmod +x /app/entrypoint.sh /app/bin/*.sh \
- && mkdir -p /data/work /data/repo /data/lock /run/secrets
+ && chmod 0644 /etc/cron.d/itnet-addresslist \
+ && mkdir -p /data/work /data/repo /data/lock /run/secrets /data/work/logs
 
 ENTRYPOINT ["/app/entrypoint.sh"]
-CMD ["help"]
+CMD ["daemon"]
