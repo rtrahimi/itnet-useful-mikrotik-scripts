@@ -13,21 +13,6 @@ A curated collection of practical MikroTik scripts used in iTNet production envi
 
 ## Included Scripts
 
-### 1. `scripts/itnet_vpn_mangle_setup.rsc`
-
-Creates or fixes the `VPN` routing table and adds two disabled `mangle` rules.
-
-- Ensures routing table `VPN` exists.
-- Ensures routing table `VPN` has `fib` enabled.
-- Adds `mark-routing` rule for destination list `VPN`.
-- Adds `mark-routing` rule for destination list `!NO-VPN`.
-- Creates rules as `disabled=yes` for safe activation.
-
-Rule comments:
-
-- `iTNet-Mangle-VPNList-to-VPNRoute`
-- `iTNet-Mangle-NotNoVPN-to-VPNRoute`
-
 ### 2. `scripts/itnet_addresslist_import_iran.rsc`
 
 For Iran (`Y-*-RTR*`) only. Installs script + daily scheduler and runs once.
@@ -57,29 +42,6 @@ For outside-Iran (`X-*-RTR*`) only. Installs script + daily scheduler and runs o
 - `scripts/itnet-whatsapp_vpn.rsc`
 - `scripts/itnet-telegram_vpn.rsc`
 - `scripts/itnet-spamhaus_auto_block.rsc`
-
-### 5. `scripts/itnet_dns_static_openai_setup.rsc`
-
-Applies strict first-party OpenAI DNS static FWD records.
-
-- Designed for fresh routers with no previous DNS static setup.
-- Removes legacy OpenAI-managed records by comment.
-- Rebuilds managed records idempotently with first-party-only scope.
-- Uses address-list `VPN` for resolved IP tagging.
-- Enables `match-subdomain=yes` on all managed FWD records.
-- Uses comment:
-  - `iTNet-oa-fp-sub2al` for managed domain records.
-
-### 6. `scripts/itnet_dns_static_discord_setup.rsc`
-
-Applies strict first-party Discord DNS static FWD records.
-
-- Removes legacy Discord-managed records by comment.
-- Rebuilds managed records idempotently with first-party-only scope.
-- Uses address-list `VPN` for resolved IP tagging.
-- Enables `match-subdomain=yes` on all managed FWD records.
-- Uses comment:
-  - `iTNet-dc-fp-sub2al` for managed domain records.
 
 ### 7. `scripts/itnet_router_sftp_backup_setup.rsc`
 
@@ -174,9 +136,6 @@ References: [MikroTik Fetch](https://help.mikrotik.com/docs/spaces/ROS/pages/897
 ### Install VPN mangle setup script
 
 ```routeros
-/tool fetch check-certificate=no url="https://raw.githubusercontent.com/rtrahimi/itnet-useful-mikrotik-scripts/main/scripts/itnet_vpn_mangle_setup.rsc" dst-path="itnet_vpn_mangle_setup.rsc"
-/import file-name="itnet_vpn_mangle_setup.rsc"
-/file remove [find where name="itnet_vpn_mangle_setup.rsc"]
 ```
 
 ### Install address-list import — Iran (`Y-*-RTR*`)
@@ -198,17 +157,11 @@ References: [MikroTik Fetch](https://help.mikrotik.com/docs/spaces/ROS/pages/897
 ### Install DNS static OpenAI setup script
 
 ```routeros
-/tool fetch check-certificate=no url="https://raw.githubusercontent.com/rtrahimi/itnet-useful-mikrotik-scripts/main/scripts/itnet_dns_static_openai_setup.rsc" dst-path="itnet_dns_static_openai_setup.rsc"
-/import file-name="itnet_dns_static_openai_setup.rsc"
-/file remove [find where name="itnet_dns_static_openai_setup.rsc"]
 ```
 
 ### Install DNS static Discord setup script
 
 ```routeros
-/tool fetch check-certificate=no url="https://raw.githubusercontent.com/rtrahimi/itnet-useful-mikrotik-scripts/main/scripts/itnet_dns_static_discord_setup.rsc" dst-path="itnet_dns_static_discord_setup.rsc"
-/import file-name="itnet_dns_static_discord_setup.rsc"
-/file remove [find where name="itnet_dns_static_discord_setup.rsc"]
 ```
 
 ### Verify scheduler and script
@@ -229,8 +182,6 @@ Expected key values:
 
 - Tested on RouterOS v7.
 - Rule order in `mangle` is important.
-- `itnet_vpn_mangle_setup.rsc` intentionally uses `passthrough=no` for deterministic match-stop behavior.
 - Scripts are designed to be explicit and operationally predictable.
-- Legacy `itnet_addresslist_sync.rsc` and combined `itnet_main_address_list.rsc` were removed; use the scheduler setup and the three split list files instead.
 
 ## Contribution Workflow
