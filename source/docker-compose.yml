@@ -5,8 +5,8 @@ services:
     network_mode: host
     volumes:
       - /opt/itnet-useful-mikrotik-scripts:/data/repo
-      - /opt/itnet-addresslist-generator/data/work:/data/work
-      - /opt/itnet-addresslist-generator/data/lock:/data/lock
+      - /root/itnet-addresslist-generator/data/work:/data/work
+      - /root/itnet-addresslist-generator/data/lock:/data/lock
       - /root/.ssh/itnet_useful_mikrotik_scripts_deploy:/run/secrets/git_deploy_key:ro
     environment:
       SCRIPTS_REPO_URL: git@github.com:rtrahimi/itnet-useful-mikrotik-scripts.git

@@ -5,14 +5,14 @@ Build and run daily Iran / Meta / Telegram / Spamhaus list updates, then publish
 
 ## Host layout
 
-- Project: `/opt/itnet-addresslist-generator`
+- Project: `/root/itnet-addresslist-generator`
 - Publish repo bind-mount: `/opt/itnet-useful-mikrotik-scripts` → `/data/repo`
 - Deploy key (read-only): `/root/.ssh/itnet_useful_mikrotik_scripts_deploy`
 
 ## Build
 
 ```bash
-cd /opt/itnet-addresslist-generator
+cd /root/itnet-addresslist-generator/source
 docker compose build
 ```
 
