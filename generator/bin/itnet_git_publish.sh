@@ -37,8 +37,12 @@ fi
 
 git -C "$SCRIPTS_REPO_DIR" config user.name "$COMMIT_NAME"
 git -C "$SCRIPTS_REPO_DIR" config user.email "$COMMIT_EMAIL"
-# GIT_SSH_COMMAND is exported above; avoid writing container temp key path into bind-mounted git config.
-git -C "$SCRIPTS_REPO_DIR" config --unset-all core.sshCommand >/dev/null 2>&1 || true
+# Prefer process env GIT_SSH_COMMAND; restore a stable host key path if present.
+if [ -f /root/.ssh/itnet_useful_mikrotik_scripts_deploy ]; then
+  git -C "$SCRIPTS_REPO_DIR" config core.sshCommand "ssh -i /root/.ssh/itnet_useful_mikrotik_scripts_deploy -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
+else
+  git -C "$SCRIPTS_REPO_DIR" config --unset-all core.sshCommand >/dev/null 2>&1 || true
+fi
 
 if git -C "$SCRIPTS_REPO_DIR" show-ref --verify --quiet "refs/heads/$SCRIPTS_BRANCH"; then
   git -C "$SCRIPTS_REPO_DIR" checkout "$SCRIPTS_BRANCH"
