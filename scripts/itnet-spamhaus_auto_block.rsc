@@ -893,6 +893,7 @@
 /ip firewall address-list add list=Auto-Block address=185.189.73.0/24 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=185.192.36.0/22 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=185.192.100.0/24 comment=iTNet-spanhaus.org-BlackList
+/ip firewall address-list add list=Auto-Block address=185.192.103.0/24 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=185.212.240.0/22 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=185.215.132.0/22 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=185.215.247.0/24 comment=iTNet-spanhaus.org-BlackList
