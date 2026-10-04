@@ -260,7 +260,6 @@
 /ip firewall address-list add list=Auto-Block address=85.11.167.0/24 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=85.114.120.0/21 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=85.121.4.0/24 comment=iTNet-spanhaus.org-BlackList
-/ip firewall address-list add list=Auto-Block address=85.122.129.0/24 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=85.158.149.0/24 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=85.203.26.0/24 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=85.203.46.0/24 comment=iTNet-spanhaus.org-BlackList
