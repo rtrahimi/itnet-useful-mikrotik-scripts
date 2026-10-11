@@ -195,6 +195,7 @@
 /ip firewall address-list add list=NO-VPN address=45.156.200.0/22 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=45.157.244.0/22 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=45.158.120.0/22 comment=iTNet-NoVPN
+/ip firewall address-list add list=NO-VPN address=45.159.110.152/31 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=45.159.112.0/22 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=45.159.148.0/22 comment=iTNet-NoVPN
 /ip firewall address-list add list=NO-VPN address=45.159.196.0/22 comment=iTNet-NoVPN
