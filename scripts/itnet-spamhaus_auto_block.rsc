@@ -172,7 +172,6 @@
 /ip firewall address-list add list=Auto-Block address=45.141.215.0/24 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=45.142.152.0/22 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=45.142.193.0/24 comment=iTNet-spanhaus.org-BlackList
-/ip firewall address-list add list=Auto-Block address=45.143.158.0/24 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=45.144.212.0/24 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=45.148.10.0/24 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=45.150.34.0/24 comment=iTNet-spanhaus.org-BlackList
@@ -1295,6 +1294,7 @@
 /ip firewall address-list add list=Auto-Block address=203.9.0.0/19 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=203.26.150.0/24 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=203.91.73.0/24 comment=iTNet-spanhaus.org-BlackList
+/ip firewall address-list add list=Auto-Block address=203.128.0.0/23 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=203.132.96.0/19 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=203.159.90.0/24 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=203.160.52.0/22 comment=iTNet-spanhaus.org-BlackList
