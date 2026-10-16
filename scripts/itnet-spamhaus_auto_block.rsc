@@ -692,7 +692,6 @@
 /ip firewall address-list add list=Auto-Block address=153.93.0.0/16 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=154.23.189.0/24 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=154.85.48.0/21 comment=iTNet-spanhaus.org-BlackList
-/ip firewall address-list add list=Auto-Block address=154.201.82.0/24 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=154.209.190.0/24 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=154.211.12.0/24 comment=iTNet-spanhaus.org-BlackList
 /ip firewall address-list add list=Auto-Block address=154.216.188.0/24 comment=iTNet-spanhaus.org-BlackList
